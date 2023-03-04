@@ -1,5 +1,7 @@
-# ApiValid
-API functional, data-driven testing tool using Electron.
+# ApiValid Core
+Core for Api Valid.
+
+A functional, data-driven API testing tool using Electron.
 
 This tool is **under development**.
 
