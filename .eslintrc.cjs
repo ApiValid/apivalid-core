@@ -12,7 +12,7 @@ module.exports = {
         project: './tsconfig.json'
     },
     rules: {
-        indent: ['error', 4],
+        indent: ['error', 4, { SwitchCase: 1 }],
         '@typescript-eslint/indent': ['error', 4],
         semi: ['error', 'always'],
         '@typescript-eslint/semi': ['error', 'always'],
