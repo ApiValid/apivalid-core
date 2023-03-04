@@ -8,11 +8,11 @@ export interface IModel {
 
 export default abstract class Model {
     private _id: string;
-    private readonly _type: EModelTypes;
+    private _type: EModelTypes;
 
     protected constructor(type: EModelTypes) {
         this.setRandomId();
-        this._type = type;
+        this.type = type;
     }
 
     public get id(): string {
@@ -31,6 +31,11 @@ export default abstract class Model {
         throw new Error('Not implemented');
     }
 
+    protected fromObject(object: IModel): void {
+        this.id = object.id;
+        this.type = object.type;
+    }
+
     public setRandomId(): void {
         this.id = uuid();
     }
@@ -39,10 +44,16 @@ export default abstract class Model {
         return this._type;
     }
 
+    private set type(type: EModelTypes) {
+        this._type = type;
+    }
+
     protected toObject(): IModel {
         return {
             id: this.id,
             type: this.type
         };
     }
+
+    public abstract clone(): Model;
 }

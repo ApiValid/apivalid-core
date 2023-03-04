@@ -4,22 +4,24 @@ import Model, { type IModel } from '../Model';
 export interface ITestCase extends IModel {
     name: string;
     description: string;
+    parentId: string;
 }
 
 export default class TestCase extends Model {
     private _name: string;
     private _description: string;
+    private _parentId: string;
 
-    private readonly _testSteps: string[] = [];
-
-    constructor() {
+    constructor(name: string, description: string, parentId: string) {
         super(EModelTypes.TestCase);
+        this.name = name;
+        this.description = description;
+        this.parentId = parentId;
     }
 
     public static fromObject(testCaseObject: ITestCase): TestCase {
-        const testCase = new TestCase();
-        testCase.name = testCaseObject.name;
-        testCase.description = testCaseObject.description;
+        const testCase = new TestCase(testCaseObject.name, testCaseObject.description, testCaseObject.parentId);
+        testCase.fromObject(testCaseObject);
 
         return testCase;
     }
@@ -28,7 +30,8 @@ export default class TestCase extends Model {
         return {
             ...super.toObject(),
             name: this._name,
-            description: this._description
+            description: this._description,
+            parentId: this._parentId
         };
     }
 
@@ -50,20 +53,17 @@ export default class TestCase extends Model {
         this._description = description;
     }
 
-    public get testSteps(): string[] {
-        return this._testSteps;
+    public get parentId(): string {
+        return this._parentId;
     }
 
-    public addTestStep(...id: string[]): void {
-        this._testSteps.push(...id);
+    private set parentId(parentId: string) {
+        this._parentId = parentId;
     }
 
-    public removeTestStep(id: string): void {
-        const index = this._testSteps.findIndex((testStep) => testStep === id);
-        if (index === -1) {
-            throw new Error(`Test step with id ${id} not found`);
-        }
+    public clone(): TestCase {
+        const testCase = new TestCase(this.name, this.description, this.parentId);
 
-        this._testSteps.splice(index, 1);
+        return testCase;
     }
 }

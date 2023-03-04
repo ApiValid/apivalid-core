@@ -30,9 +30,7 @@ export default class TestSuitesController {
      * @returns Test suite instance
      */
     public createTestSuite(name?: string, description?: string): TestSuite {
-        const testSuite = new TestSuite();
-        testSuite.name = name ?? 'Test Suite';
-        testSuite.description = description ?? '';
+        const testSuite = new TestSuite(name ?? 'Test Suite', description ?? '');
         this._testSuites.push(testSuite);
 
         return testSuite;
@@ -81,8 +79,7 @@ export default class TestSuitesController {
      */
     public cloneTestSuiteById(id: string): TestSuite {
         const testSuite = this.getTestSuiteById(id);
-        const clonedTestSuite = TestSuite.fromObject(testSuite.toObject());
-        clonedTestSuite.setRandomId();
+        const clonedTestSuite = testSuite.clone();
         clonedTestSuite.name += ' - copy';
 
         this._testSuites.push(clonedTestSuite);

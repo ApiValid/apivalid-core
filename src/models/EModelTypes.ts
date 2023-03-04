@@ -1,7 +1,10 @@
+/**
+ * List of model types. Only final models should be listed here (no abstract).
+ */
 enum EModelTypes {
     TestSuite,
     TestCase,
-    TestStep,
+    ApiRequestTestStep,
 }
 
 export default EModelTypes;

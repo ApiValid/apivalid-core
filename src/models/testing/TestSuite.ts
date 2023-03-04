@@ -10,16 +10,15 @@ export default class TestSuite extends Model {
     private _name: string;
     private _description: string;
 
-    private readonly _testCases: string[] = [];
-
-    constructor() {
+    constructor(name: string, description: string) {
         super(EModelTypes.TestSuite);
+        this.name = name;
+        this.description = description;
     }
 
     public static fromObject(testSuiteObject: ITestSuite): TestSuite {
-        const testSuite = new TestSuite();
-        testSuite.name = testSuiteObject.name;
-        testSuite.description = testSuiteObject.description;
+        const testSuite = new TestSuite(testSuiteObject.name, testSuiteObject.description);
+        testSuite.fromObject(testSuiteObject);
 
         return testSuite;
     }
@@ -50,20 +49,9 @@ export default class TestSuite extends Model {
         this._description = description;
     }
 
-    public get testCases(): string[] {
-        return this._testCases;
-    }
+    public clone(): TestSuite {
+        const testSuite = new TestSuite(this.name, this.description);
 
-    public addTestCase(...id: string[]): void {
-        this._testCases.push(...id);
-    }
-
-    public removeTestCase(id: string): void {
-        const index = this._testCases.findIndex((testCase) => testCase === id);
-        if (index === -1) {
-            throw new Error(`Test case with id ${id} not found`);
-        }
-
-        this._testCases.splice(index, 1);
+        return testSuite;
     }
 }

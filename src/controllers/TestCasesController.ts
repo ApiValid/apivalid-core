@@ -27,12 +27,11 @@ export default class TestCasesController {
      * Create a new test case with optional name and description
      * @param name Name of the test case
      * @param description Description of the test case
+     * @param parentId Parent test suite id
      * @returns Test case instance
      */
-    public createTestCase(name?: string, description?: string): TestCase {
-        const testCase = new TestCase();
-        testCase.name = name ?? 'Test Case';
-        testCase.description = description ?? '';
+    public createTestCase(parentId: string, name?: string, description?: string): TestCase {
+        const testCase = new TestCase(name ?? 'Test Case', description ?? '', parentId);
         this._testCases.push(testCase);
 
         return testCase;
@@ -81,8 +80,7 @@ export default class TestCasesController {
      */
     public cloneTestCaseById(id: string): TestCase {
         const testCase = this.getTestCaseById(id);
-        const clonedTestCase = TestCase.fromObject(testCase.toObject());
-        clonedTestCase.setRandomId();
+        const clonedTestCase = testCase.clone();
         clonedTestCase.name += ' - copy';
 
         this._testCases.push(clonedTestCase);
