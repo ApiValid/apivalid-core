@@ -1,4 +1,4 @@
-import TestSuite from '../models/testing/TestSuite';
+import TestSuite from '../../models/testing/TestSuite';
 
 /**
  * Test suites collection manager

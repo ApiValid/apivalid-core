@@ -1,4 +1,4 @@
-import TestCase from '../models/testing/TestCase';
+import TestCase from '../../models/testing/TestCase';
 
 /**
  * Test cases collection manager

@@ -1,6 +1,6 @@
-import EModelTypes from '../models/EModelTypes';
-import ApiRequestTestStep from '../models/testing/predefined-steps/ApiRequest/ApiRequestTestStep';
-import type TestStep from '../models/testing/TestStep';
+import EModelTypes from '../../models/EModelTypes';
+import ApiRequestTestStep from '../../models/testing/predefined-steps/ApiRequest/ApiRequestTestStep';
+import type TestStep from '../../models/testing/TestStep';
 
 /**
  * Test steps collection manager
