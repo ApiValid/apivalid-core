@@ -4,12 +4,10 @@
         "moduleResolution": "node",
         "target": "ES2021",
         "sourceMap": false,
-        "outDir": "dist",
         "strictNullChecks": true,
-        "esModuleInterop": true,
-        "declaration": true
+        "esModuleInterop": true
     },
     "include": [
-        "src/**/*"
+        "tests/**/*"
     ],
 }

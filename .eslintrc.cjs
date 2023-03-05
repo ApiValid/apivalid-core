@@ -5,6 +5,12 @@ module.exports = {
     },
     extends: 'standard-with-typescript',
     overrides: [
+        {
+            files: ['tests/**/*.ts'],
+            parserOptions: {
+                project: './tsconfig.test.json'
+            }
+        }
     ],
     parserOptions: {
         ecmaVersion: 'latest',
